@@ -3,7 +3,7 @@ import './App.css'
 
 const persons = [	{
   name : 'seolmin',
-  age : 30
+  age : 32
 },
 {
   name : 'hyosung',
@@ -15,13 +15,16 @@ const persons = [	{
 }
 ];
 
+function renderPerson(person){
+ return <Hello name={person.name} age={person.age} />
+}
 
 function App() {
   return (
    
     <>
-    {/* map()함수 이용하면 배열에 데이터가 몇 개 있든지 컴포넌트 여러개 손쉽게 출력가능하다. */}
-      {persons.map(person=><Hello name={person.name} age={person.age} />)}
+      {/* 이번에는 map() 의 인자로 함수를 넣기 */}
+      {persons.map(renderPerson)}
     </>
   );
 }
