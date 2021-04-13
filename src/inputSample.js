@@ -40,7 +40,7 @@ function InputSample(){
   return(
     <div>
       <div>
-        //포커스를 줄 input에다가 
+        {/* //포커스를 줄 input에다가  */}
         <input 
           name="name" 
           value={name} 

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import InputSample from './inputSample';
 
 
 
@@ -8,7 +7,10 @@ import InputSample from './inputSample';
 
 function App() {
   return (
-   <InputSample />
+    <div>
+      <h1>Start React200제</h1>
+      <p>001. .jsx에 html 적용하기</p>
+    </div>
   );
 }
 
