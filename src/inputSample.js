@@ -1,4 +1,8 @@
-import React, {useState} from 'react';
+//InputSample 에서는 초기화 버튼을 누르면 포커스가 초기화 버튼에 그대로 남아있게 됩니다.
+
+// 한번, 초기화 버튼을 클릭했을 때 이름 input 에 포커스가 잡히도록 useRef 를 사용하여 기능을 구현해보겠습니다.
+
+import React, {useState, useRef} from 'react';
 
 function InputSample(){
   //input상태관리하기
@@ -11,6 +15,9 @@ function InputSample(){
   })
   
   const {name, nickname}=inputs; // // 비구조화 할당을 통해 값 추출
+  //useRef
+  const nameInput = useRef();
+
 
   const onChange = (e) =>{
     const {value, name} = e.target;
@@ -27,16 +34,19 @@ function InputSample(){
       name : '',
       nickname : '',
     })
+    nameInput.current.focus(); //Ref 객체의 .current 값은 우리가 원하는 DOM 을 가르키게 됩니다
   }
 
   return(
     <div>
       <div>
+        //포커스를 줄 input에다가 
         <input 
           name="name" 
           value={name} 
           placeholder="이름을 입력하시오"
           onChange={onChange}
+          ref={nameInput}
           />
         <input 
           name="nickname" 
