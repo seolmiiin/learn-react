@@ -4,10 +4,10 @@ function Counter(){
   //이벤트 등록함수
   let [number, setNumber] = useState(0)
   let onIncrease = () => {
-      return setNumber(number+1);
+     setNumber(prevNumber=>prevNumber+1);
   }
   let onDecrease = () => {
-       return setNumber(number-1);
+    setNumber(prevNumber=>prevNumber-1);
   }
   return(
     <div>
