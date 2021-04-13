@@ -1,9 +1,16 @@
 import React from 'react';
 
-//hello 컴포넌트 만들기
+// jsx내부에서 자바스크립트 값사용하는 방법 : 중괄호로 감싸주면 된다.
 function Hello(){
+  const name = 'React'
+  const style = {
+    color : 'red',
+    fontSize : 24
+  }
   return(
-    <div>hello world!</div>
+    <>
+    <div style={style}>hello {name}!</div>
+    </>
   );
 }
 
