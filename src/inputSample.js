@@ -1,29 +1,23 @@
 import React, {useState} from 'react';
 
 function InputSample(){
-  //상태가 바뀔 부분을 생각해보자
-  //input
-  //[초기상태, 변화될상태]설정
-let [text, setText]=useState('');
-    //input에 입력한 값이 값에 보이기
-let onChange=(e)=>{
-     setText(e.target.value);
- 
-  }
-let resetInput=()=>{
- setText('');
-}
-  //버튼을 누르면 input창 초기화
-
-
+  //input상태관리하기
+  const [inputs, setInputs]=useState({
+    name : '',
+    nickname : ''
+  })
+  
+  const {name, nickname}=inputs; // // 비구조화 할당을 통해 값 추출
   return(
-    
     <div>
-      <input onChange={onChange} value={text} />
-      <button onClick={resetInput}>초기화</button>
-      <h1>값 :<b>{text}</b> </h1>
+      <div>
+        <input name="name" value={name} placeholder="이름을 입력하시오"/>
+        <input name="nickname" value={nickname} placeholder="별명을 입력하시오" />
+        <button>초기화</button>
+      </div>
+        <p>값 : 이름(닉네임)</p>
     </div>
-    
+
   );
 }
 
