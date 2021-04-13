@@ -1,19 +1,27 @@
 import Hello from './hello';
 import './App.css'
 
+const persons = [	{
+  name : 'seolmin',
+  age : 30
+},
+{
+  name : 'hyosung',
+  age : 29
+},
+{
+  name : 'sooin',
+  age : 27
+}
+];
+
+
 function App() {
   return (
    
     <>
-    {/* Props로 컴포넌트에 데이터 전달하기 */}
-    <Hello name='react' something={true} papapapa={['hello', 1,2,3,4, true]} />
-    <Hello name='javascript' />
-    <Hello name='seolmin' color="blue" />
-      {/*
-Hello component에 name이라는 값을 전달하고 싶다면 이렇게 작성
-이것이 바로 props를 이용하여 App컴포넌트에 데이터 보내는 방법이다. 
-props의 이름은 name 이고 name에 "react"라는 값을 담아 App 컴포넌트에 보낸 것
-*/}
+    {/* map()함수 이용하면 배열에 데이터가 몇 개 있든지 컴포넌트 여러개 손쉽게 출력가능하다. */}
+      {persons.map(person=><Hello name={person.name} age={person.age} />)}
     </>
   );
 }

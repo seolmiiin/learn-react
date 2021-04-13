@@ -1,12 +1,11 @@
 import React from 'react';
 
 // 구조 분해 할당으로 props 사용하기
-function Hello({name, color}){
+function Hello({name, age}){
 
   return(
     <>
-    <div style={{color :color}}> {name}님 안녕하세요</div>
-    {/* {{}} 객체를 감싸는 중괄호인것 */}
+    <div> {name}님의 나이는 {age}입니다.</div>    
     </>
   );
 }
