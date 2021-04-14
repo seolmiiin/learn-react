@@ -1,24 +1,19 @@
 import React from 'react';
 
-
-function User({user}){
+function User({ user }) {
   return (
     <div>
-      <p>
-        <b>{user.username}</b> : <i>{user.email}</i>
-      </p>
+      <b>{user.username}</b> <span>({user.email})</span>
     </div>
   );
 }
 
-function UserList({users}){
- 
-  return(
+function UserList({ users }) {
+  return (
     <div>
-      {
-        users.map(user => <User user={user} key={user.id} />)
-      }
-
+      {users.map(user => (
+        <User user={user} key={user.id} />
+      ))}
     </div>
   );
 }
