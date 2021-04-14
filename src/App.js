@@ -1,5 +1,6 @@
 //배열에 항목추가하기
 //추가한 항목 삭제하기
+//추가된 항목의 이름 클릭하면 색 바뀌게 만들기
 
 import React, { useRef, useState } from 'react';
 import CreateUser from './CreateUser';
@@ -28,17 +29,20 @@ function App() {
     {
       id: 1,
       username: 'velopert',
-      email: 'public.velopert@gmail.com'
+      email: 'public.velopert@gmail.com',
+      active : true
     },
     {
       id: 2,
       username: 'tester',
-      email: 'tester@example.com'
+      email: 'tester@example.com',
+      active : false
     },
     {
       id: 3,
       username: 'liz',
-      email: 'liz@example.com'
+      email: 'liz@example.com',
+      active : false
     }
   ]);
 
