@@ -1,4 +1,5 @@
 //배열에 항목추가하기
+//추가한 항목 삭제하기
 
 import React, { useRef, useState } from 'react';
 import CreateUser from './CreateUser';
@@ -59,6 +60,11 @@ function App() {
     })
     nextId.current += 1;
   }
+//항목삭제
+const onRemove= id =>{
+  setUsers(users.filter(user => user.id !== id));
+}
+
 
   return (
       <>
@@ -69,7 +75,7 @@ function App() {
           onCreate={onCreate} 
         />
         
-        <UserList users= { users } /> 
+        <UserList users= { users } onRemove={onRemove} /> 
         {/* props를 user라고 써서 계속 오류남 */}
 
       </>
