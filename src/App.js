@@ -59,7 +59,7 @@ function App() {
       username,
       email
     }
-    setUsers(
+    setUsers(users=>
       //[...users, user]
       users.concat(user)
     )
@@ -68,15 +68,15 @@ function App() {
       email : ''
     })
     nextId.current += 1;
-  },[username, email, users])
+  },[username, email])
 //항목삭제
 const onRemove= useCallback(id =>{
-  setUsers(users.filter(user => user.id !== id));
-},[users]);
+  setUsers(users=>users.filter(user => user.id !== id));
+});
 //토글기능
 const onToggle = useCallback(id =>{
-  setUsers(users.map(user => user.id===id ? {...user, active :!user.active } : user))
-},[users])
+  setUsers(users=>users.map(user => user.id===id ? {...user, active :!user.active } : user))
+})
 
 /*
 여기서 발생하는 성능적 문제가 한가지 있습니다. 
