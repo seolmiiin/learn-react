@@ -68,7 +68,10 @@ function App() {
 const onRemove= id =>{
   setUsers(users.filter(user => user.id !== id));
 }
-
+//토글기능
+const onToggle = id =>{
+  setUsers(users.map(user => user.id===id ? {...user, active :!user.active } : user))
+}
 
   return (
       <>
@@ -79,7 +82,7 @@ const onRemove= id =>{
           onCreate={onCreate} 
         />
         
-        <UserList users= { users } onRemove={onRemove} /> 
+        <UserList users= { users } onRemove={onRemove} onToggle={onToggle} /> 
         {/* props를 user라고 써서 계속 오류남 */}
 
       </>

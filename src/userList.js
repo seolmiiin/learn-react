@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-function User({ user, onRemove }) {
+function User({ user, onRemove, onToggle }) {
+  useEffect(()=>{
+    console.log('component가 화면에 나타남');
+    return ()=>{
+      console.log('component가 화면에서 사라짐')
+    }
+  },[]);
   return (
     <div>
       <b
+      onClick={()=> onToggle(user.id)}
        style={
          {
            cursor : "pointer",
@@ -16,11 +23,11 @@ function User({ user, onRemove }) {
   );
 }
 
-function UserList({ users, onRemove }) {
+function UserList({ users, onRemove, onToggle }) {
   return (
     <div>
       {users.map(user => (
-        <User user={user} key={user.id} onRemove={onRemove} />
+        <User user={user} key={user.id} onRemove={onRemove} onToggle={onToggle} />
       ))}
     </div>
   );
