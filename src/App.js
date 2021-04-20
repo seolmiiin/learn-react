@@ -54,9 +54,17 @@ function reducer(state, action) {
         users: state.users.concat(action.user),
       };
     case 'TOGGLE_USER':
-      return {};
+      return {
+        ...state,
+        users: state.users.map((user) =>
+          user.id === action.id ? { ...user, active: !user.active } : user
+        ),
+      };
     case 'REMOVE_USER':
-      return {};
+      return {
+        ...state,
+        users: state.users.filter((user) => user.id !== action.id),
+      };
   }
 }
 
@@ -85,8 +93,17 @@ function App() {
       },
     });
     nextId.current += 1;
-  });
+  }, [username, email]);
 
+  const onToggle = useCallback((id) => {
+    dispatch({
+      type: 'TOGGLE_USER',
+      id,
+    });
+  }, []);
+  const onRemove = useCallback((id) => {
+    dispatch({ type: 'REMOVE_USER', id });
+  }, []);
   const count = useMemo(() => CountActiveUsers(users), [users]);
 
   return (
