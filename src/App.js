@@ -48,7 +48,11 @@ function reducer(state, action) {
         },
       };
     case 'CREATE_USER':
-      return {};
+      return {
+        ...state,
+        inputs: initialState.inputs,
+        users: state.users.concat(action.user),
+      };
     case 'TOGGLE_USER':
       return {};
     case 'REMOVE_USER':
@@ -70,6 +74,19 @@ function App() {
       value,
     });
   }, []);
+
+  const onCreate = useCallback(() => {
+    dispatch({
+      type: 'CREATE_USER',
+      user: {
+        id: nextId.curren,
+        username,
+        email,
+      },
+    });
+    nextId.current += 1;
+  });
+
   const count = useMemo(() => CountActiveUsers(users), [users]);
 
   return (
