@@ -1,9 +1,10 @@
-//useReducer로 상태관리하기
-//1. useState 다지우기
+//custom hook 만들기
+//input을 hook으로 만들어보자
 
 import React, { useReducer, useRef, useMemo, useCallback } from 'react';
 import CreateUser from './CreateUser';
 import UserList from './userList';
+import useInput from './useInput';
 
 function CountActiveUsers(users) {
   console.log('활성사용자 수를 세는 중');
@@ -11,10 +12,6 @@ function CountActiveUsers(users) {
 }
 
 const initialState = {
-  inputs: {
-    username: '',
-    email: '',
-  },
   users: [
     {
       id: 1,
@@ -39,14 +36,6 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'CHANGE_INPUT':
-      return {
-        ...state,
-        inputs: {
-          ...state.inputs,
-          [action.name]: action.value,
-        },
-      };
     case 'CREATE_USER':
       return {
         ...state,
@@ -71,17 +60,12 @@ function reducer(state, action) {
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { users } = state;
-  const { username, email } = state.inputs;
+  const [form, onChange, reset] = useInput({
+    username: '',
+    email: '',
+  });
+  const { username, email } = form;
   const nextId = useRef(4);
-
-  const onChange = useCallback((e) => {
-    const { name, value } = e.target;
-    dispatch({
-      type: 'CHANGE_INPUT',
-      name,
-      value,
-    });
-  }, []);
 
   const onCreate = useCallback(() => {
     dispatch({
@@ -93,7 +77,8 @@ function App() {
       },
     });
     nextId.current += 1;
-  }, [username, email]);
+    reset();
+  }, [username, email, reset]);
 
   const onToggle = useCallback((id) => {
     dispatch({
