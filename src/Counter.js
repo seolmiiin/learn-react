@@ -1,4 +1,4 @@
-import React, { Component, component } from 'react';
+import React, { Component } from 'react';
 
 class Counter extends Component {
   /*
@@ -16,20 +16,27 @@ class Counter extends Component {
    */
   constructor(props) {
     super(props);
-    this.handleIncrease = this.handleIncrease.bind(this);
-    this.handleDecrease = this.handleDecrease.bind(this);
+    this.state = {
+      counter: 0,
+    };
+    // this.handleIncrease = this.handleIncrease.bind(this);
+    // this.handleDecrease = this.handleDecrease.bind(this);
   }
   /*
   클래스 내부에 종속된 함수를 "메서드" 라고 부릅니다. 
   클래스에서 커스텀 메서드를 만들게 될 때에는 보통 이름을 handle... 이라고 이름을 짓습니다
   */
-  handleIncrease() {
-    console.log(this);
-    console.log('increase');
-  }
-  handleDecrease() {
-    console.log('decrease');
-  }
+  //또다른 방법은 화살표 함수로 만들어서
+  handleIncrease = () => {
+    this.setState({
+      counter: this.state.counter + 1,
+    });
+  };
+  handleDecrease = () => {
+    this.setState({
+      counter: this.state.counter - 1,
+    });
+  };
   /*
   우리가 추후 상태를 업데이트 할 때에는 이 메서드에서 this.setState 라는 함수를 사용해야 하는데요, 
   여기서 this 는 컴포넌트 인스턴스를 가르켜야 하는데, 
@@ -48,7 +55,7 @@ class Counter extends Component {
   render() {
     return (
       <div>
-        <h1>0</h1>
+        <h1>{this.state.counter}</h1>
         <button onClick={this.handleIncrease}>+1</button>
         <button onClick={this.handleDecrease}>-1</button>
       </div>
