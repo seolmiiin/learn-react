@@ -2,10 +2,29 @@ import React, { Component, component } from 'react';
 
 class Counter extends Component {
   /*
+  함수의 bind 를 사용하면, 
+  해당 함수에서 가르킬 this 를 직접 설정해줄 수 있습니다. 
+  constructor 에서는 props 파라미터로 받아오고 super(props) 를 호출해주어야 하는데, 
+  이는 이 클래스가 컴포넌트로서 작동 할 수 있도록 해주는 
+  Component 쪽에 구현되어있는 생성자 함수를 먼저 실행해주고, 
+  우리가 할 작업을 하겠다 라는 것을 의미합니다.
+
+이 방법이 가장 일반적인 방법이고, 
+또 다른 방법은 커스텀 메서드를 선언 할 때 
+화살표 함수 문법을 사용해서 작성하는 것 입니다.
+   
+   */
+  constructor(props) {
+    super(props);
+    this.handleIncrease = this.handleIncrease.bind(this);
+    this.handleDecrease = this.handleDecrease.bind(this);
+  }
+  /*
   클래스 내부에 종속된 함수를 "메서드" 라고 부릅니다. 
   클래스에서 커스텀 메서드를 만들게 될 때에는 보통 이름을 handle... 이라고 이름을 짓습니다
   */
   handleIncrease() {
+    console.log(this);
     console.log('increase');
   }
   handleDecrease() {
