@@ -3,6 +3,9 @@
 import React, { useReducer, useMemo, createContext } from 'react';
 import CreateUser from './CreateUser';
 import UserList from './userList';
+import produce from 'immer';
+
+// window.produce = produce;
 
 function CountActiveUsers(users) {
   console.log('활성사용자 수를 세는 중');
@@ -35,21 +38,32 @@ const initialState = {
 function reducer(state, action) {
   switch (action.type) {
     case 'CREATE_USER':
-      return {
-        users: [...state.users, action.user],
-      };
+      return produce(state, (draft) => {
+        draft.users.push(action.user);
+      });
+    // return {
+    //   users: [...state.users, action.user],
+    // };
     case 'TOGGLE_USER':
-      return {
-        ...state,
-        users: state.users.map((user) =>
-          user.id === action.id ? { ...user, active: !user.active } : user
-        ),
-      };
+      return produce(state, (draft) => {
+        const user = draft.users.find((user) => user.id === action.id);
+        user.active = !user.active;
+      });
+    // return {
+    //   ...state,
+    //   users: state.users.map((user) =>
+    //     user.id === action.id ? { ...user, active: !user.active } : user
+    //   ),
+    // };
     case 'REMOVE_USER':
-      return {
-        ...state,
-        users: state.users.filter((user) => user.id !== action.id),
-      };
+      return produce(state, (draft) => {
+        const index = draft.users.findIndex((user) => user.id === action.id);
+        draft.users.splice(index, 1);
+      });
+    // return {
+    //   ...state,
+    //   users: state.users.filter((user) => user.id !== action.id),
+    // };
   }
 }
 
