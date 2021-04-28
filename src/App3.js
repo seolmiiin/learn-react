@@ -6,6 +6,7 @@ function App3() {
   const checked = (e) => {
     setCheck(e.target.checked);
   };
+
   return (
     <div>
       <CheckBox onChange={checked} checked={check}>

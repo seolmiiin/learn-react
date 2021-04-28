@@ -1,5 +1,15 @@
-.Box {
-  background: black;
-  color: white;
-  padding: 2rem;
+.checkbox{
+  border:1px solid red;
+}
+
+.checkbox input{
+  width:0;
+  height:0;
+  position:absolute;
+  opacity:0;
+}
+
+.checkbox .icon{
+  display:flex;
+  border:2px solid red;
 }
